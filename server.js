@@ -4,7 +4,7 @@ const app = express();
 
 app.use(express.json());
 
-const apiKey = "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"; // Substitua pela sua chave da OpenAI
+const apiKey = "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"; // Substitua pela sua chave da OpenAI
 
 app.post('/api/chat', async (req, res) => {
     const { prompt } = req.body;
