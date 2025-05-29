@@ -1,0 +1,13 @@
+{
+  "name": "roblox-chatgpt-server",
+  "version": "1.0.0",
+  "description": "Servidor para integrar ChatGPT com Roblox",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "axios": "^1.6.7"
+  }
+}
